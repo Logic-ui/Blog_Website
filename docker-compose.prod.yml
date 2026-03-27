@@ -1,0 +1,61 @@
+# Production Docker Compose (no debuggers, optimized)
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: blog-database-prod
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres_data_prod:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    restart: unless-stopped
+    networks:
+      - blog-network-prod
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: blog-backend-prod
+    environment:
+      - DEBUG_MODE=0
+      - DATABASE_URL=${DATABASE_URL}
+      - SECRET_KEY=${SECRET_KEY}
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - CORS_ORIGINS=${CORS_ORIGINS}
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    depends_on:
+      - db
+    networks:
+      - blog-network-prod
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: blog-frontend-prod
+    environment:
+      - DEBUG_MODE=0
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - blog-network-prod
+
+networks:
+  blog-network-prod:
+    driver: bridge
+
+volumes:
+  postgres_data_prod:

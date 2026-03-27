@@ -12,22 +12,10 @@ import Admin from './pages/Admin';
 import './styles/index.css';
 
 function App() {
-    const [theme, setTheme] = React.useState(localStorage.getItem('theme') || 'light');
-
-    React.useEffect(() => {
-        document.body.classList.toggle('dark-mode', theme === 'dark');
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-    }, [theme]);
-
-    const toggleTheme = () => {
-        setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-    };
-
     return (
         <AuthProvider>
             <Router>
-                <Header theme={theme} onThemeToggle={toggleTheme} />
+                <Header />
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/login" element={<Login />} />

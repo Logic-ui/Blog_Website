@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import '../styles/Header.css';
 
-const Header = ({ theme, onThemeToggle }) => {
+const Header = () => {
     const { user, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
@@ -41,11 +41,6 @@ const Header = ({ theme, onThemeToggle }) => {
                                 <li><Link to="/register">Register</Link></li>
                             </>
                         )}
-                        <li>
-                            <button onClick={onThemeToggle} className="theme-toggle" aria-label="Toggle dark mode">
-                                {theme === 'dark' ? '☀️ Light' : '🌙 Dark'}
-                            </button>
-                        </li>
                     </ul>
                 </nav>
             </div>

@@ -1,33 +1,9 @@
-:root {
-    --bg: #f5f5f5;
-    --surface: #ffffff;
-    --text: #222222;
-    --muted: #666666;
-    --primary: #007bff;
-    --primary-strong: #0056b3;
-    --shadow: rgba(0, 0, 0, 0.12);
-    --border: #e0e0e0;
-}
-
-body.dark-mode,
-[data-theme='dark'] {
-    --bg: #0f172a;
-    --surface: #111827;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --primary: #60a5fa;
-    --primary-strong: #93c5fd;
-    --shadow: rgba(0, 0, 0, 0.45);
-    --border: #1f2937;
-}
-
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
-    transition: background-color 0.35s ease, color 0.35s ease;
+    background-color: #f5f5f5;
+    color: #333;
 }
 
 * {
@@ -37,32 +13,13 @@ body {
 button {
     cursor: pointer;
     font-size: 14px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
-    transition: all 0.25s ease;
 }
 
 a {
     text-decoration: none;
-    color: var(--primary);
+    color: #007bff;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-.fade-in-up {
-    animation: fadeInUp 0.7s ease both;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
