@@ -2,12 +2,15 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+    animation: fadeInUp 0.6s ease;
 }
 
 .home-container h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: #333;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .blogs-grid {
@@ -17,32 +20,37 @@
 }
 
 .blog-card {
-    background: white;
+    background: var(--surface);
+    border: 1px solid var(--border);
     padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
+    border-radius: 14px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    opacity: 0;
+    animation: fadeInUp 0.75s ease both;
 }
 
 .blog-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 12px 22px var(--shadow);
+    border-color: var(--primary);
 }
 
 .blog-card h2 {
     margin: 0 0 0.5rem 0;
-    color: #333;
-    font-size: 1.25rem;
+    color: var(--text);
+    font-size: 1.35rem;
+    letter-spacing: 0.02em;
 }
 
 .blog-card .description {
-    color: #666;
+    color: var(--muted);
     margin: 0.5rem 0;
     line-height: 1.5;
 }
 
 .blog-card .date {
-    color: #999;
+    color: var(--muted);
     font-size: 0.875rem;
     display: block;
     margin: 1rem 0;
@@ -50,13 +58,14 @@
 
 .blog-card .read-more {
     display: inline-block;
-    color: #007bff;
+    color: var(--primary);
     margin-top: 1rem;
     font-weight: 600;
 }
 
 .blog-card .read-more:hover {
-    color: #0056b3;
+    color: var(--primary-strong);
+    text-decoration: underline;
 }
 
 .loading {
